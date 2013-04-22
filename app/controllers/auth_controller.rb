@@ -2,7 +2,8 @@ class AuthController < ApplicationController
   skip_before_filter :auth, :only => :create
 
   def create
-    if ENV['GITHUB_TEAM_ID'].nil? || team_access?
+    # if ENV['GITHUB_TEAM_ID'].nil? || team_access?
+    if ENV['GITHUB_TEAM_ID'].nil?
       user = User.where(
         :github_id => auth_hash['uid'],
         :login => auth_hash['info']['nickname']
